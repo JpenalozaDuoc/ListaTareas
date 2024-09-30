@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "414523615605",
+    "project_id": "loginandroid-37947",
+    "storage_bucket": "loginandroid-37947.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414523615605:android:dfa290ffe26d80e95dcb3c",
+        "android_client_info": {
+          "package_name": "com.example.listatareas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6oX6t6GI7BBWEmzO9Vkwc9C4XQFPFkt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
