@@ -85,8 +85,8 @@ class ActividadesActivity : ComponentActivity() {
 
             // Obtener todos los datos de SharedPreferences
             val allEntries = sharedPreferences.all
-            val titulos = allEntries
-                .filter { it.key.startsWith("titulo_") }
+            val nombres = allEntries
+                .filter { it.key.startsWith("nombre_") }
                 .map { (_, value) ->
                     val jsonString = value as? String
                     jsonString?.let {
@@ -132,7 +132,7 @@ class ActividadesActivity : ComponentActivity() {
                         Image(painter = painterResource(R.drawable.actividades), contentDescription = "Login Imagen",
                             modifier = Modifier.size(50.dp))
 
-                        Text(text = actividad["titulo"].toString(),
+                        Text(text = actividad["nombre"].toString(),
                             fontSize = 16.sp,
                             fontWeight= FontWeight.Bold,
                             color = Color.White,

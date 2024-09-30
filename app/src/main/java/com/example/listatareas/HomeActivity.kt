@@ -3,6 +3,7 @@ package com.example.listatareas
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -34,6 +35,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.listatareas.Operaciones.TareasCompletas
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -54,6 +56,10 @@ class HomeActivity : ComponentActivity() {
         val sharedPreferences = context.getSharedPreferences("mis_datos", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
+
+        var textoInfo: String=""
+        val tareaCompleta = TareasCompletas("Imprimir informe","Realizar la impresion del informe")
+
 
             Column(
                 modifier = Modifier
@@ -204,6 +210,24 @@ class HomeActivity : ComponentActivity() {
 
                 }
 
+//                Row(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .padding(12.dp),
+//                    verticalAlignment = Alignment.CenterVertically,
+//                    horizontalArrangement = Arrangement.Start
+//                ) {
+//                    Text(text = "Mostrar Actividaes Completadas",
+//                        modifier = Modifier.clickable {
+//                            //val navigate = Intent(context, ActividadesActivity::class.java)
+//                            //context.startActivity(navigate)
+//                            textoInfo = tareaCompleta.obtener_lista_tareas_completas().toString()
+//                            Toast.makeText(context, textoInfo, Toast.LENGTH_LONG).show()
+//                        },
+//                        fontWeight = FontWeight.SemiBold
+//                    )
+//
+//                }
 
 
             }

@@ -80,5 +80,14 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
 
+    testImplementation(libs.mockito.core)
+
+    testImplementation(libs.mockito.kotlin)
+
+    androidTestImplementation(libs.androidx.junit.v115)
+
+    testImplementation(libs.kotlinx.coroutines.test)
+
+
 
 }

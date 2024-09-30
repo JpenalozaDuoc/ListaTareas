@@ -34,8 +34,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.listatareas.firebaseAuth.AuthService
+import com.example.listatareas.model.StoreApp
+import com.example.listatareas.model.Usuario
 import com.google.gson.Gson
-
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 @SuppressLint("CommitPrefEdits")
@@ -170,6 +175,20 @@ fun RegisterScreen(viewModel: UsuariosViewModel) {
                fontWeight = FontWeight.SemiBold
            )
 
+    }
+}
+
+fun registrarUsuario(usuario: Usuario, context: Context){
+    CoroutineScope(Dispatchers.IO).launch {
+        val result = StoreApp.database.usuarioDao().addUser(usuario)
+        if (result != -1L) {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(context, "Registro exitoso.", Toast.LENGTH_LONG).show()
+            }
+        }
+        else{
+            Toast.makeText(context, "Error al Registrar.", Toast.LENGTH_LONG).show()
+        }
     }
 }
 

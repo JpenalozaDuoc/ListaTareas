@@ -12,6 +12,6 @@ interface UsuarioDao {
     @Insert
     fun addUser(usuario: Usuario):Long
 
-    @Query("SELECT * FROM usuario WHERE email = :correo AND contrasena = :password LIMIT 1")
-    fun iniciarSesion(correo: String, password: String): Usuario?
+    @Query("SELECT * FROM usuario WHERE email = :correo AND contrasena = :contrasena LIMIT 1")
+    fun iniciarSesion(correo: String, contrasena: String): Usuario?
 }

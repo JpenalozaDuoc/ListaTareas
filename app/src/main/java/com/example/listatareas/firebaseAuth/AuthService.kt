@@ -46,10 +46,10 @@ class AuthService {
         }
     }
 
-    fun iniciarSesionFirebase(
+    fun iniciarSesion(
         email: String,
         contrasena: String,
-        context: Context
+        context: Context,
     ){
         CoroutineScope(Dispatchers.IO).launch {
             try {

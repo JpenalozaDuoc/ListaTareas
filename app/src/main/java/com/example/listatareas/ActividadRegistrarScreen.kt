@@ -38,7 +38,7 @@ import com.google.gson.Gson
 
 fun RegistrarActividadScreen (viewModel: ActividadesViewModel){
 
-    var titulo by remember { mutableStateOf("") }
+    var nombre by remember { mutableStateOf("") }
     var descripcion by remember { mutableStateOf("") }
 
     val context = LocalContext.current
@@ -66,9 +66,9 @@ fun RegistrarActividadScreen (viewModel: ActividadesViewModel){
 
         Spacer(modifier = Modifier.height(10.dp))
         //Definición del Campo Titulo
-        OutlinedTextField(value = titulo, onValueChange = {
-            titulo = it
-        }, label = { Text(text = "Titulo")} )
+        OutlinedTextField(value = nombre, onValueChange = {
+            nombre = it
+        }, label = { Text(text = "Nombre")} )
 
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -83,7 +83,7 @@ fun RegistrarActividadScreen (viewModel: ActividadesViewModel){
         Button(
             onClick = {
 
-                if (titulo.isBlank() || descripcion.isBlank()) {
+                if (nombre.isBlank() || descripcion.isBlank()) {
 
                     //Si uno de los 2 campos se encuentra vació, retornará el mensaje de la siguiente línea
                     Toast.makeText(context, "Por favor, complete los campos de las Actividades", Toast.LENGTH_SHORT).show()
@@ -94,7 +94,7 @@ fun RegistrarActividadScreen (viewModel: ActividadesViewModel){
                     val caracteresMaliciosos = "[<>&\"';]".toRegex()
 
                     // Compara el contenido ingresado en cada campo para confirmar si tiene caracteres regulares definidos en la variable caracteres Maliciosos.
-                    if (caracteresMaliciosos.containsMatchIn(titulo) ||
+                    if (caracteresMaliciosos.containsMatchIn(nombre) ||
                         caracteresMaliciosos.containsMatchIn(descripcion)) {
                         //en Caso de encontrar caracteres especiales, se levanta alaerta
                         Toast.makeText(context, "Alerta: Se detectaron caracteres potencialmente maliciosos.", Toast.LENGTH_LONG).show()
@@ -103,7 +103,7 @@ fun RegistrarActividadScreen (viewModel: ActividadesViewModel){
 
                         // Crear un arreglo asociativo (Map)
                         val datosUsuario: Map<String, Any> = mapOf(
-                            "titulo" to titulo,
+                            "nombre" to nombre,
                             "descripcion" to descripcion
                         )
 
@@ -112,11 +112,11 @@ fun RegistrarActividadScreen (viewModel: ActividadesViewModel){
                         val jsonString = gson.toJson(datosUsuario)
 
                         // Guardar el JSON en SharedPreferences
-                        editor.putString("titulo_"+titulo, jsonString)
+                        editor.putString("nombre_"+nombre, jsonString)
                         editor.apply()
 
                         // Limpia los campos de texto después de guardar
-                        titulo = ""
+                        nombre = ""
                         descripcion = ""
                         Toast.makeText(context, "Registro exitoso.", Toast.LENGTH_LONG).show()
 

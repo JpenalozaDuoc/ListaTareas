@@ -35,6 +35,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
+import com.example.listatareas.model.StoreApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -189,6 +190,26 @@ fun iniciarSesionFirebase(email: String, contrasena: String, context: Context, f
             withContext(Dispatchers.Main) {
                 // Si ocurre un error, mostrar el mensaje de error
                 Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+}
+
+fun iniciarSesion(correo: String, contrasena: String, context: Context) {
+    CoroutineScope(Dispatchers.IO).launch {
+        val usuario = StoreApp.database.usuarioDao().iniciarSesion(correo, contrasena )
+        withContext(Dispatchers.Main) {
+            if (usuario != null) {
+
+                Toast.makeText(context, "Inicio de sesión exitoso", Toast.LENGTH_LONG).show()
+
+                val navigate = Intent(context, HomeActivity::class.java)
+                navigate.putExtra("nombreUsuario", usuario.nombre as String)
+                context.startActivity(navigate)
+
+            } else {
+
+                Toast.makeText(context, "Correo o contraseña incorrectos", Toast.LENGTH_LONG).show()
             }
         }
     }
